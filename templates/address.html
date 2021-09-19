@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<script src="../static/scripts/datatables.js"></script>
+
+<div class="container col-12 mt-4 tr-fontformat">
+    
+    <h3><object data="../static/SVGs/wallet-svgrepo-com.svg" height="35" width="35"></object> Wallet Balance</h3>
+    <h5>{{ '%0.2f'|format(balance) }} Ether</h5>
+    <h5 style=color:burlywood>
+        {{ '%0.2f'|format((balance|float * ethereum_price['last']))|float|format_currency }} 
+        ({{ ethereum_price['last'] }} / ETH)
+    </h5>
+    <table class="table table-striped tr-fontformat">
+        <tr>
+            <td class="table-primary responsive-data bdr">
+                <h6 id="address-button" class="clickable" onclick="document.getElementById('wallet-address').classList.toggle('hidden'); document.getElementById('address-button').classList.toggle('hidden');">Click here to reveal the Wallet Address</h6>
+                <h7 id="wallet-address"class="wallet-address hidden">{{ address }}</h7>
+            </td>
+        </tr>
+    </table>
+    <table class="table tr-fontformat">
+        <tr>
+            <td>
+            <h4><object data="../static/SVGs/arrows-swap-svgrepo-com.svg" height="30" width="35"></object>Transaction History:</h4>
+            </td>
+        </tr>
+    </table>
+    <table id="txHist" class="table table-striped bdr borderless">
+        <thead class="head-bg-blue">
+            <tr>
+                <th>Basic Info</th>
+                <th>Additional Info</th>
+            </tr>
+        </thead>
+        {% for transaction, date in tx_information %}
+        <tr>
+            <td class="responsive-data tr-fontformat">
+                <strong>Hash</strong>
+                <p>
+                    <a href="/transaction/{{ transaction['hash'] }}">{{ transaction['hash'] }}</a>
+                </p>
+                <p>
+                    <strong>From</strong>   
+                    <a href="/address?address={{ transaction['from'] }}">
+                        {{ transaction['from'] }}</a>
+                </p>
+                <p>
+                    <strong>To</strong>
+                    <a href="/address?address={{ transaction['from'] }}">
+                        {{ transaction['to'] }}</a>
+                </p>
+            </td>
+            <td class="responsive-data tr-fontformat">
+                <p>
+                    <strong>Date</strong>
+                    <a style=color:#7169b9>{{ date }}</a>
+                </p>
+                {% if address|lower == transaction['from']|lower %}
+                <p>
+                    <strong>Type</strong>
+                    <a style=color:red>OUT</a>
+                </p>
+                <p>
+                    <strong>Amount</strong>
+                    <a style=color:darkblue> {{ transaction['value']|float / 1000000000000000000 }} Ether</a>
+                </p>
+                <p>
+                    <strong>Value</strong>
+                    <a style=color:red>{{ "%.2f"|format((transaction['value']|float / 1000000000000000000 * ethereum_price['last'])|float)|float|format_currency }}</a>
+                </p>
+                {% else %}
+                <p>
+                    <strong>Type</strong>
+                    <a style=color:green>IN</a>
+                </p>
+                <p>
+                    <strong>Amount</strong>
+                    <a style=color:darkblue>{{ (transaction['value']|float / 1000000000000000000) }} Ether</a>
+                </p>
+                <p>
+                    <strong>Value</strong>
+                    <a style=color:green>{{ "$%.2f"|format((transaction['value']|float / 1000000000000000000 * ethereum_price['last'])|float)|float|format_currency }}</a>
+                </p>
+                {% endif %}
+                <p>
+                </p>
+                
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

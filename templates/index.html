@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Welcome Popup -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header tr-fontformat">
+                <h5 class="modal-title" id="exampleModalLabel">Welcome to Etherfinder</h5>
+            </div>
+            <div class="modal-body tr-fontformat">
+                Use our web app to see the balance and transaction history of every Ethereum Wallet in existence.
+                You can dive deeper and explore the details of every Ether transaction ever made.
+                (This message won't be shown again)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary tr-fontformat" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src="../static/scripts/popup_cookie_script.js"></script>  
+
+<!-- ethereum current price + gas price -->
+<div id="content" class="container-lg">
+    <div class="row mt-4 mb-4">
+        <table class="table">
+            <td class="col-6 col-sm-5 tr-fontformat">
+                <table>
+                    <tr>
+                        <td><object data="../static/SVGs/ethereum-1.svg" height="35" width="35"></object></td>
+                        <td>
+                            <h2>Ether Price</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <h5>{{ ethereum_price['last']|format_currency }}</h5>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="col-5 col-sm-5 tr-fontformat">
+                <table>
+                    <tr>
+                        <td><object data="../static/SVGs/gaspump.svg" height="25" width="25"></object></td>
+                        <td>
+                            <h2>Gas Price</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <h5>{{ '%0.2f'|format(ether.gasPrice / 1000000000) }} Gwei</h5>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </table>
+        <table class="table col-5 mt-4 mb-4 bdr">
+            <tr class="table-primary responsive-data tr-fontformat">
+                <td>
+                    <p>
+                        Wallet Examples you can explore: <a href="/address?address=0x976D76B00fd5eb497412Df5DD7b2742456Af7635">Wallet 1</a>, <a href="/address?address=0x9Afc59A4be9002129b778a00E00D78d6c1d67939">Wallet 2</a>, and any Address you see in the latest transactions section
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <table class="table table-striped bdr">
+                <thead class="head-bg-blue">
+                    <tr>
+                        <th colspan="2">Latest Blocks</th>
+                    </tr>
+                </thead>
+                {% for block in latest_blocks %}
+                <tr>
+                    <td class="responsive-data tr-fontformat">
+                        <h5>Block</h5>
+                        <a href="/block/{{ block.number }}">{{ block.number }}</a>
+                        <p>{{ (current_time - block.timestamp)|int }} seconds ago</p>
+                    </td>
+                    <td class="responsive-data tr-fontformat">
+                        <h5>Miner</h5> 
+                        <a href="/address?address={{ block.miner }}">
+                            {% if block.miner.lower() in miners %}
+                                {{ miners[block.miner.lower()] }} 
+                            {% else %}
+                                {{ block.miner.lower() }}
+                            {% endif %}</a>
+                        <p>
+                            {{ block.transactions|length }} transactions
+                        </p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <table class="table table-striped bdr">
+                <thead class="head-bg-blue">
+                    <tr>
+                        <th>Latest Transactions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for transaction in latest_transactions %}
+                    <tr>
+                        <td class="responsive-data tr-fontformat">
+                            <h6>Hash</h6>
+                            <p>
+                                <a href="/transaction/{{ transaction['hash'].hex() }}">{{ transaction['hash'].hex() }}</a>
+                            </p>
+                            <p>
+                                <h6>From</h6> 
+                                <a href="/address?address={{ transaction['from'] }}">
+                                    {{ transaction['from'] }}</a>
+                            </p>
+                            <p>
+                                <h6>To</h6>
+                                <a href="/address?address={{ transaction['from'] }}">
+                                    {{ transaction['to'] }}</a>
+                            </p>
+                        </td>
+                    </tr>
+                
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

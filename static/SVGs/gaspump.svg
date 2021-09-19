@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg6348" viewBox="0 0 64.41 72.671" version="1.1">
+  <g id="layer1" transform="translate(-314.59 -464.21)">
+    <path id="path6313" opacity=".99537" style="enable-background:new" fill="#555753" d="m314.59 464.21v32.689h0.75396l2.5146 31.935h-3.2689v8.0466h48.279v-8.0466h-3.2689l0.50292-8.0466c1.9886 0.0483 4.6091-0.17864 7.7951-1.2573 2.7634-0.93582 5.8996-2.5254 8.0466-5.532s3.2776-7.3 3.0175-12.321c-0.22048-4.26-1.3413-7.543-2.766-10.31l1.5087-1.7602-14.836-13.579v-11.818h-48.28zm8.0466 8.2981h32.186v16.093h-32.186v-16.093zm40.233 17.602c0.73546 0.18025 1.5937 0.2406 2.5146 0.75397 2.3995 1.3369 5.1369 3.6874 5.532 11.316 0.18909 3.6483-0.53993 5.684-1.5087 7.0408-0.96881 1.3567-2.4077 2.2188-4.0233 2.766-1.5269 0.51739-3.204 0.6904-4.5262 0.75396l1.2573-15.842h0.75397v-6.7893z"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Gas Pump Icon</dc:title>
+        <dc:date>2010-04-01T15:35:31</dc:date>
+        <dc:description>Just a simple gas pump icon. I didn't see one on here and I needed one for a project so I decided to make my creation available PD. :)</dc:description>
+        <dc:source>http://openclipart.org/detail/35725/gas-pump-icon-by-mairin</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>mairin</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>auto</rdf:li>
+            <rdf:li>automobile</rdf:li>
+            <rdf:li>car</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>driving</rdf:li>
+            <rdf:li>empty</rdf:li>
+            <rdf:li>fuel</rdf:li>
+            <rdf:li>fuel pump</rdf:li>
+            <rdf:li>full</rdf:li>
+            <rdf:li>gas</rdf:li>
+            <rdf:li>gasoline</rdf:li>
+            <rdf:li>gaspump</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>pump</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

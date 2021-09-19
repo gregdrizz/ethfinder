@@ -1,0 +1,5 @@
+ccxt
+etherscan-python
+flask
+web3
+gunicorn

@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="/styles/custom.css">
+<div class="container mt-4">
+    <table class="table table-striped bdr">
+        <thead class="head-bg-blue">
+            <tr>
+                <th colspan="2">Transaction</th>
+            </tr>
+        </thead>
+        <tbody class="tr-fontformat">
+            <tr>
+                <td>Transaction hash</td>
+                <td class="responsive-data">{{ tx.hash.hex() }}</td>
+            </tr>
+            <tr>
+                <td>block number</td>
+                <td>
+                    <a href="/block/{{ tx.blockNumber }}">{{ tx.blockNumber }}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>from</td>
+                <td class="responsive-data">
+                    <a href="/address?address={{ tx.from }}">{{ tx.from }}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>to</td>
+                <td class="responsive-data">
+                    <a href="/address?address={{ tx.to }}">{{ tx.to }}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>value</td>
+                <td>{{ value }} Ether (${{ ethereum_price['last'] * value|float }})</td>
+            </tr>
+            <tr>
+                <td>gas used</td>
+                <td>{{ receipt.gasUsed }}</td>
+            </tr>
+            <tr>
+                <td>gas price</td>
+                <td>{{ tx.gasPrice / 1000000000 }} Gwei</td>
+            </tr>
+            <tr>
+                <td>transaction fee</td>
+                <td>
+                    {{ receipt.gasUsed * gas_price }} Ether 
+                    (${{ (receipt.gasUsed * gas_price)|float * ethereum_price['last'] }})
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
